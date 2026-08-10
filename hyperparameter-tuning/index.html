@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperparameter Tuning — Pipelines, GridSearch &amp; Optuna | ML Handbook</title>
+<meta name="description" content="Pipelines, GridSearchCV, RandomizedSearchCV, and Bayesian optimization with Optuna.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/hyperparameter-tuning/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hyperparameter Tuning — Pipelines, GridSearch &amp; Optuna">
+<meta property="og:description" content="Pipelines, GridSearchCV, RandomizedSearchCV, and Bayesian optimization with Optuna.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/hyperparameter-tuning/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hyperparameter Tuning — Pipelines, GridSearch &amp; Optuna">
+<meta name="twitter:description" content="Pipelines, GridSearchCV, RandomizedSearchCV, and Bayesian optimization with Optuna.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Model Development"}, {"@type": "ListItem", "position": 3, "name": "Hyperparameter Tuning", "item": "https://engr-rabbi.github.io/ml-handbook/hyperparameter-tuning/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/" class="active"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Model Development</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Hyperparameter Tuning</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-sliders"></i> Model Development</span>
+  <h1>Hyperparameter Tuning</h1>
+  <p class="lede">Wrapping preprocessing and modeling in a Pipeline keeps your workflow leak-free, and choosing the right search strategy can mean the difference between hours and days of tuning.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-cubes-stacked"></i> Pipelines</span><span><i class="fa-solid fa-magnifying-glass"></i> Search Strategies</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">Pipelines</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.ensemble import RandomForestRegressor
+
+numeric_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
+])
+categorical_transformer = Pipeline([
+    ('imputer', SimpleImputer(strategy='constant', fill_value='missing')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+preprocessor = ColumnTransformer([
+    ('num', numeric_transformer, numeric_features),
+    ('cat', categorical_transformer, categorical_features)
+])
+
+model = Pipeline([
+    ('preprocessor', preprocessor),
+    ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))
+])</code></pre></div>
+<div class="callout callout-note">
+  <i class="fa-solid fa-circle-info callout-ic"></i>
+  <div><span class="callout-title">Why a Pipeline matters</span><p>Wrapping preprocessing and modeling in one object guarantees every transformation is fit only on the training fold — never on validation or test data — eliminating a common source of data leakage.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">GridSearchCV vs. RandomizedSearchCV vs. Optuna</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from scipy.stats import randint
+
+# GridSearchCV — exhaustive
+params = {'regressor__max_depth': [5, 10, 15, None]}
+grid = GridSearchCV(model, params, cv=5, scoring='neg_mean_squared_error')
+grid.fit(X_train, y_train)
+
+# RandomizedSearchCV — samples a limited number of combinations
+params_dist = {'regressor__n_estimators': randint(50, 300), 'regressor__max_depth': randint(5, 30)}
+random_search = RandomizedSearchCV(model, params_dist, n_iter=20, cv=5, n_jobs=-1, random_state=42)
+random_search.fit(X_train, y_train)</code></pre></div>
+
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python"># pip install optuna
+import optuna
+from sklearn.model_selection import cross_val_score
+
+def objective(trial):
+    n_estimators = trial.suggest_int('n_estimators', 50, 300)
+    max_depth = trial.suggest_int('max_depth', 5, 50)
+    model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
+    return cross_val_score(model, X_train, y_train, cv=3, scoring='neg_root_mean_squared_error').mean()
+
+study = optuna.create_study(direction='maximize')
+study.optimize(objective, n_trials=50)
+print(study.best_trial.params)</code></pre></div>
+
+<div class="table-wrap"><table>
+  <thead><tr><th>Tool</th><th>Strategy</th><th>Speed</th><th>Best for</th></tr></thead>
+  <tbody>
+    <tr><td><strong>GridSearchCV</strong></td><td>Exhaustive</td><td><span class="badge badge-bad">Slow</span></td><td>Small parameter space, need certainty</td></tr>
+    <tr><td><strong>RandomizedSearchCV</strong></td><td>Random sampling</td><td><span class="badge badge-neutral">Moderate</span></td><td>Large space, limited time</td></tr>
+    <tr><td><strong>Optuna</strong></td><td>Bayesian optimization</td><td><span class="badge badge-good">Fast &amp; smart</span></td><td>Complex spaces, best results quickly</td></tr>
+  </tbody>
+</table></div>
+</div>
+
+<div class="pager no-print">
+<a href="../model-evaluation/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Model Evaluation</div>
+        </a>
+<a href="../explainable-ai/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">Explainable AI</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Resources — FAQ, Cheatsheets, Best Practices &amp; References | ML Handbook</title>
+<meta name="description" content="FAQ, best practices, common mistakes, troubleshooting, and a utility-function cheatsheet.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/resources/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ML Resources — FAQ, Cheatsheets, Best Practices &amp; References">
+<meta property="og:description" content="FAQ, best practices, common mistakes, troubleshooting, and a utility-function cheatsheet.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/resources/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ML Resources — FAQ, Cheatsheets, Best Practices &amp; References">
+<meta name="twitter:description" content="FAQ, best practices, common mistakes, troubleshooting, and a utility-function cheatsheet.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Practice & Community"}, {"@type": "ListItem", "position": 3, "name": "Resources", "item": "https://engr-rabbi.github.io/ml-handbook/resources/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/" class="active"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Practice &amp; Community</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Resources</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-book-bookmark"></i> Practice &amp; Community</span>
+  <h1>Resources, FAQ &amp; Cheatsheets</h1>
+  <p class="lede">A single reference hub: frequently asked questions, best practices, common mistakes, a troubleshooting guide, a pandas cheatsheet, and further reading — everything that doesn't belong to one specific chapter.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-circle-question"></i> FAQ</span><span><i class="fa-solid fa-screwdriver-wrench"></i> Troubleshooting</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">Frequently Asked Questions</h2>
+<details class="faq-item">
+  <summary>Conda environment vs. venv — which should I use? <i class="fa-solid fa-plus"></i></summary>
+  <p>Conda manages both packages and environments and can handle non-Python dependencies (CUDA, C libraries) — convenient for data science. <code class="inline">venv</code> is lighter, managing only Python packages. Conda is more common for ML/DL work.</p>
+</details>
+<details class="faq-item">
+  <summary>One-Hot Encoding or Target Encoding — how do I decide? <i class="fa-solid fa-plus"></i></summary>
+  <p>With fewer than 10–15 categories, One-Hot is safe. For high-cardinality features, consider Target or Frequency Encoding — but apply smoothing and fit only on the training fold to avoid leakage. Details on the <a href="../data-preprocessing/">Data Preprocessing</a> page.</p>
+</details>
+<details class="faq-item">
+  <summary>GridSearchCV is taking too long — what should I do? <i class="fa-solid fa-plus"></i></summary>
+  <p>Shrink the parameter grid, switch to <code class="inline">RandomizedSearchCV</code>, or use Optuna for large spaces. Use <code class="inline">n_jobs=-1</code> to leverage all CPU cores. See <a href="../hyperparameter-tuning/">Hyperparameter Tuning</a>.</p>
+</details>
+<details class="faq-item">
+  <summary>SHAP vs. LIME — which should I pick? <i class="fa-solid fa-plus"></i></summary>
+  <p>For tree-based models, SHAP's <code class="inline">TreeExplainer</code> is fast and precise. For any black-box model needing a quick, simple local explanation, LIME works well. Details on the <a href="../explainable-ai/">Explainable AI</a> page.</p>
+</details>
+<details class="faq-item">
+  <summary>Why does my model score well in training but poorly in production? <i class="fa-solid fa-plus"></i></summary>
+  <p>Usually data drift or data leakage. Monitor regularly (see <a href="../mlops/">MLOps</a>) and always fit transformations only on the training fold via a Pipeline.</p>
+</details>
+
+<h2 class="sec">Best Practices</h2>
+<div class="grid-cards">
+  <div class="card"><h4><i class="fa-solid fa-cubes-stacked"></i> Always use a Pipeline</h4><p>Keeps every transformation fit only on the training fold, preventing leakage.</p></div>
+  <div class="card"><h4><i class="fa-solid fa-layer-group"></i> Start simple</h4><p>Build a baseline first, then add complexity step by step, measuring improvement each time.</p></div>
+  <div class="card"><h4><i class="fa-solid fa-vial"></i> Always cross-validate</h4><p>Don't trust a single train-test split for your final performance estimate.</p></div>
+  <div class="card"><h4><i class="fa-solid fa-seedling"></i> Fix your random state</h4><p>Use a fixed seed for reproducibility across runs.</p></div>
+  <div class="card"><h4><i class="fa-solid fa-code-branch"></i> Version-control your environment</h4><p>Commit <code class="inline">environment.yaml</code> or <code class="inline">requirements.txt</code> to Git.</p></div>
+  <div class="card"><h4><i class="fa-solid fa-chart-line"></i> Monitor in production</h4><p>A model's job isn't over at deployment — track drift and retrain as needed.</p></div>
+</div>
+
+<h2 class="sec">Common Mistakes</h2>
+<div class="callout callout-danger"><i class="fa-solid fa-circle-exclamation callout-ic"></i><div><span class="callout-title">Fitting transformations on the full dataset</span><p>Always <code class="inline">fit()</code> only on training data, then <code class="inline">transform()</code> both sets.</p></div></div>
+<div class="callout callout-danger"><i class="fa-solid fa-circle-exclamation callout-ic"></i><div><span class="callout-title">Shuffling time-series data before splitting</span><p>Leaks future information into training — see <a href="../time-series/">Time Series</a>.</p></div></div>
+<div class="callout callout-danger"><i class="fa-solid fa-circle-exclamation callout-ic"></i><div><span class="callout-title">Looking only at accuracy on imbalanced data</span><p>Use precision, recall, F1, or ROC-AUC instead — see <a href="../model-evaluation/">Model Evaluation</a>.</p></div></div>
+
+<h2 class="sec">Troubleshooting Guide</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Issue</th><th>Likely Cause</th><th>Solution</th></tr></thead>
+  <tbody>
+    <tr><td><code class="inline">ValueError: Input contains NaN</code></td><td>Missing values in the data</td><td>Check with <code class="inline">analyze_missing_data()</code>, then impute</td></tr>
+    <tr><td><code class="inline">could not convert string to float</code></td><td>Unencoded categorical column</td><td>Apply encoding — see <a href="../data-preprocessing/">Data Preprocessing</a></td></tr>
+    <tr><td><code class="inline">Found unknown categories</code></td><td>New category in test data</td><td>Use <code class="inline">OneHotEncoder(handle_unknown='ignore')</code></td></tr>
+    <tr><td>Training accuracy high, validation low</td><td>Overfitting</td><td>Regularization, Dropout, EarlyStopping, more data</td></tr>
+    <tr><td><code class="inline">tf.config.list_physical_devices('GPU')</code> is empty</td><td>GPU TensorFlow not installed/configured</td><td><code class="inline">pip install tensorflow[and-cuda]</code>, verify CUDA</td></tr>
+  </tbody>
+</table></div>
+
+<h2 class="sec">Pandas Cheatsheet</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Task</th><th>Code</th></tr></thead>
+  <tbody>
+    <tr><td>View NaN values</td><td><code class="inline">df[df['col'].isna()]</code></td></tr>
+    <tr><td>Replace NaN with a value</td><td><code class="inline">df['col'].fillna('Unknown', inplace=True)</code></td></tr>
+    <tr><td>Drop rows matching a condition</td><td><code class="inline">df = df.drop(df[df['price'] >= 200000].index)</code></td></tr>
+    <tr><td>Drop duplicate rows</td><td><code class="inline">df = df.drop_duplicates()</code></td></tr>
+    <tr><td>Concatenate dataframes</td><td><code class="inline">pd.concat([df1, df2], ignore_index=True)</code></td></tr>
+    <tr><td>Rename columns</td><td><code class="inline">df.rename(columns={'old': 'new'}, inplace=True)</code></td></tr>
+    <tr><td>Deep copy</td><td><code class="inline">df_copy = df.copy(deep=True)</code></td></tr>
+  </tbody>
+</table></div>
+
+<h2 class="sec">Further Reading</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Tool / Library</th><th>Documentation</th></tr></thead>
+  <tbody>
+    <tr><td>scikit-learn</td><td>scikit-learn.org/stable/documentation.html</td></tr>
+    <tr><td>pandas</td><td>pandas.pydata.org/docs</td></tr>
+    <tr><td>TensorFlow / Keras</td><td>tensorflow.org/guide</td></tr>
+    <tr><td>SHAP</td><td>shap.readthedocs.io</td></tr>
+    <tr><td>Optuna</td><td>optuna.readthedocs.io</td></tr>
+    <tr><td>imbalanced-learn</td><td>imbalanced-learn.org</td></tr>
+  </tbody>
+</table></div>
+</div>
+
+<div class="pager no-print">
+<a href="../kaggle/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Kaggle</div>
+        </a>
+<div></div>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

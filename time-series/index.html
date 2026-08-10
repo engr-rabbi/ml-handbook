@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Series Analysis &amp; Forecasting for Machine Learning | ML Handbook</title>
+<meta name="description" content="Splitting, feature engineering, and forecasting models for time-ordered data.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/time-series/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time Series Analysis &amp; Forecasting for Machine Learning">
+<meta property="og:description" content="Splitting, feature engineering, and forecasting models for time-ordered data.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/time-series/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Time Series Analysis &amp; Forecasting for Machine Learning">
+<meta name="twitter:description" content="Splitting, feature engineering, and forecasting models for time-ordered data.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Classical ML"}, {"@type": "ListItem", "position": 3, "name": "Time Series", "item": "https://engr-rabbi.github.io/ml-handbook/time-series/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/" class="active"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Classical ML</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Time Series</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-clock-rotate-left"></i> Classical ML</span>
+  <h1>Time Series Analysis &amp; Forecasting</h1>
+  <p class="lede">Time-ordered data breaks the usual i.i.d. assumption behind most ML methods — order matters, and getting splitting and features wrong here is one of the most common sources of falsely optimistic results.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-scissors"></i> Correct Splitting</span><span><i class="fa-solid fa-chart-line"></i> Forecasting Models</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">Time Series Train-Test Splitting</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python"># Never shuffle — split chronologically
+train_size = int(0.8 * len(df))
+train, test = df[:train_size], df[train_size:]
+
+# For cross-validation, use a rolling/expanding window instead of random folds
+from sklearn.model_selection import TimeSeriesSplit
+
+tscv = TimeSeriesSplit(n_splits=5)
+for train_idx, val_idx in tscv.split(df):
+    X_train, X_val = X.iloc[train_idx], X.iloc[val_idx]
+    y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]</code></pre></div>
+<div class="callout callout-danger">
+  <i class="fa-solid fa-circle-exclamation callout-ic"></i>
+  <div><span class="callout-title">The #1 mistake</span><p>Randomly shuffling time-series data before splitting leaks future information into training — a scenario that's impossible in production and makes your validation score misleadingly good.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Time Series Feature Engineering</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">df['date'] = pd.to_datetime(df['date'])
+df['year'] = df['date'].dt.year
+df['month'] = df['date'].dt.month
+df['dayofweek'] = df['date'].dt.dayofweek
+df['is_weekend'] = (df['dayofweek'] >= 5).astype(int)
+
+# Lag features — past values as predictors
+df['sales_lag_1'] = df['sales'].shift(1)
+df['sales_lag_7'] = df['sales'].shift(7)
+
+# Rolling window statistics
+df['sales_rolling_mean_7'] = df['sales'].shift(1).rolling(window=7).mean()
+df['sales_rolling_std_7'] = df['sales'].shift(1).rolling(window=7).std()</code></pre></div>
+<div class="callout callout-warning">
+  <i class="fa-solid fa-triangle-exclamation callout-ic"></i>
+  <div><span class="callout-title">Always shift before rolling</span><p>Notice the <code class="inline">.shift(1)</code> before <code class="inline">.rolling()</code> — without it, the rolling window would include the current row's own target value, leaking information the model wouldn't actually have at prediction time.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Classical Forecasting: ARIMA</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">from statsmodels.tsa.arima.model import ARIMA
+
+# order=(p, d, q): p=autoregressive terms, d=differencing, q=moving-average terms
+model = ARIMA(train['sales'], order=(2, 1, 2))
+fitted = model.fit()
+
+forecast = fitted.forecast(steps=30)
+print(fitted.summary())</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Modern Forecasting: Prophet</h2>
+<p>Facebook's Prophet is designed to be robust to missing data and handle seasonality/holidays with minimal tuning — a strong, fast baseline before reaching for deep learning.</p>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python"># pip install prophet
+from prophet import Prophet
+
+# Prophet requires columns named exactly 'ds' (date) and 'y' (value)
+prophet_df = df.rename(columns={'date': 'ds', 'sales': 'y'})
+
+model = Prophet(yearly_seasonality=True, weekly_seasonality=True)
+model.fit(prophet_df)
+
+future = model.make_future_dataframe(periods=30)
+forecast = model.predict(future)
+model.plot(forecast)</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Model Comparison</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Approach</th><th>Good for</th><th>Handles seasonality?</th></tr></thead>
+  <tbody>
+    <tr><td><strong>ARIMA</strong></td><td>Single series, short-to-medium horizon</td><td>With SARIMA extension</td></tr>
+    <tr><td><strong>Prophet</strong></td><td>Business time series with strong seasonality/holidays</td><td><span class="badge badge-good">Built-in</span></td></tr>
+    <tr><td><strong>Gradient Boosting with lag features</strong></td><td>Multiple related series, rich exogenous features</td><td>Via engineered features</td></tr>
+    <tr><td><strong>LSTM / Deep Learning</strong></td><td>Large datasets, complex non-linear patterns</td><td>Via architecture, needs more data</td></tr>
+  </tbody>
+</table></div>
+<div class="callout callout-tip">
+  <i class="fa-solid fa-lightbulb callout-ic"></i>
+  <div><span class="callout-title">Start simple</span><p>A gradient-boosted model with well-engineered lag/rolling features is often a stronger, more practical baseline than a full deep-learning forecasting model — reserve LSTM-based approaches (see <a href="../deep-learning/">Deep Learning</a>) for cases with abundant data and clearly non-linear temporal patterns.</p></div>
+</div>
+</div>
+
+<div class="pager no-print">
+<a href="../ensemble-learning/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Ensemble Learning</div>
+        </a>
+<a href="../deep-learning/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">Deep Learning</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

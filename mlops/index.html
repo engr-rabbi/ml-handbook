@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MLOps — Model Versioning, Monitoring &amp; Drift Detection | ML Handbook</title>
+<meta name="description" content="Model persistence, experiment tracking, monitoring, and data drift detection.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/mlops/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MLOps — Model Versioning, Monitoring &amp; Drift Detection">
+<meta property="og:description" content="Model persistence, experiment tracking, monitoring, and data drift detection.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/mlops/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MLOps — Model Versioning, Monitoring &amp; Drift Detection">
+<meta name="twitter:description" content="Model persistence, experiment tracking, monitoring, and data drift detection.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Production & MLOps"}, {"@type": "ListItem", "position": 3, "name": "MLOps", "item": "https://engr-rabbi.github.io/ml-handbook/mlops/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/" class="active"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Production &amp; MLOps</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">MLOps</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-infinity"></i> Production &amp; MLOps</span>
+  <h1>MLOps: Versioning, Monitoring &amp; Drift</h1>
+  <p class="lede">A model's job isn't done at training — MLOps is the discipline of reliably persisting, tracking, and monitoring models once they're in the real world.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-box-archive"></i> Model Persistence</span><span><i class="fa-solid fa-chart-line"></i> Drift Detection</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">Model Persistence</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">import joblib
+
+joblib.dump(pipe, 'model.joblib')
+loaded_pipe = joblib.load('model.joblib')</code></pre></div>
+<div class="callout callout-tip">
+  <i class="fa-solid fa-lightbulb callout-ic"></i>
+  <div><span class="callout-title">Pickle vs. Joblib</span><p>For large sklearn models packed with NumPy arrays, <code class="inline">joblib</code> is generally faster and more memory-efficient than <code class="inline">pickle</code>. Always ensure the same library versions when loading — a mismatch can cause silent errors.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Experiment Tracking</h2>
+<p>Tools like MLflow let you log parameters, metrics, and model artifacts for every training run — essential once you're iterating across dozens of experiments.</p>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python"># pip install mlflow
+import mlflow
+
+with mlflow.start_run():
+    mlflow.log_param("n_estimators", 200)
+    mlflow.log_param("max_depth", 15)
+
+    model.fit(X_train, y_train)
+    rmse = evaluate(model, X_test, y_test)
+
+    mlflow.log_metric("rmse", rmse)
+    mlflow.sklearn.log_model(model, "model")</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Data Drift Detection</h2>
+<p>After deployment, incoming data can gradually diverge from the training distribution — silently degrading performance.</p>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">def detect_drift(reference_df, current_df, threshold=0.05):
+    drift_report = {}
+    for col in reference_df.columns:
+        if reference_df[col].dtype == 'object':
+            ref_dist = reference_df[col].value_counts(normalize=True)
+            cur_dist = current_df[col].value_counts(normalize=True)
+            common = set(ref_dist.index) & set(cur_dist.index)
+            diff = sum(abs(ref_dist[c] - cur_dist[c]) for c in common)
+            if diff > threshold:
+                drift_report[col] = f"Drift detected (diff: {diff:.3f})"
+        else:
+            rel_diff = abs(reference_df[col].mean() - current_df[col].mean()) / reference_df[col].mean()
+            if rel_diff > threshold:
+                drift_report[col] = "Mean drift"
+    return drift_report</code></pre></div>
+<div class="callout callout-tip">
+  <i class="fa-solid fa-lightbulb callout-ic"></i>
+  <div><span class="callout-title">Production-grade alternative</span><p>For real systems, use a statistically rigorous approach — the <strong>Population Stability Index (PSI)</strong>, a <strong>Kolmogorov–Smirnov test</strong>, or a dedicated library like <strong>Evidently AI</strong> — with automated reporting and alerting.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">The MLOps Lifecycle</h2>
+<div class="flow-vert">
+  <div class="flow-step" data-i="1"><div class="ft">Version everything</div><div>Code, data, and model artifacts — not just code.</div></div>
+  <div class="flow-step" data-i="2"><div class="ft">Automate retraining</div><div>Trigger retraining on a schedule or when drift is detected.</div></div>
+  <div class="flow-step" data-i="3"><div class="ft">Monitor in production</div><div>Track prediction distributions, latency, and error rates.</div></div>
+  <div class="flow-step" data-i="4"><div class="ft">Roll back safely</div><div>Keep previous model versions ready for instant rollback.</div></div>
+</div>
+<p>Once a model is monitored and versioned, the next step is serving it reliably — covered on the <a href="../deployment/">Deployment</a> page.</p>
+</div>
+
+<div class="pager no-print">
+<a href="../explainable-ai/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Explainable AI</div>
+        </a>
+<a href="../deployment/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">Deployment</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

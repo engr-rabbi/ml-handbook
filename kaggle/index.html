@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaggle Competition Strategy — Tips for Better Leaderboard Scores | ML Handbook</title>
+<meta name="description" content="Practical strategy, workflow, and pitfalls for competitive machine learning.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/kaggle/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kaggle Competition Strategy — Tips for Better Leaderboard Scores">
+<meta property="og:description" content="Practical strategy, workflow, and pitfalls for competitive machine learning.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/kaggle/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kaggle Competition Strategy — Tips for Better Leaderboard Scores">
+<meta name="twitter:description" content="Practical strategy, workflow, and pitfalls for competitive machine learning.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Practice & Community"}, {"@type": "ListItem", "position": 3, "name": "Kaggle", "item": "https://engr-rabbi.github.io/ml-handbook/kaggle/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/" class="active"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Practice &amp; Community</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Kaggle</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-trophy"></i> Practice &amp; Community</span>
+  <h1>Kaggle Competition Strategy</h1>
+  <p class="lede">Competitive machine learning rewards a disciplined workflow as much as algorithm knowledge. This page covers the practical strategy that separates strong leaderboard finishes from stalled ones.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-list-ol"></i> Workflow</span><span><i class="fa-solid fa-triangle-exclamation"></i> Common Pitfalls</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">A Structured Competition Workflow</h2>
+<div class="flow-vert">
+  <div class="flow-step" data-i="1"><div class="ft">Understand the metric</div><div>Read the evaluation metric carefully — optimizing the wrong metric wastes days.</div></div>
+  <div class="flow-step" data-i="2"><div class="ft">Build a quick baseline</div><div>Get a simple model + submission working on day one, before any fancy feature engineering.</div></div>
+  <div class="flow-step" data-i="3"><div class="ft">Set up robust local CV</div><div>Your local cross-validation score should track the public leaderboard closely — if it doesn't, something's wrong.</div></div>
+  <div class="flow-step" data-i="4"><div class="ft">Iterate on features</div><div>Feature engineering usually yields bigger gains than model tuning in tabular competitions.</div></div>
+  <div class="flow-step" data-i="5"><div class="ft">Tune &amp; ensemble</div><div>Once features plateau, tune hyperparameters and ensemble diverse models.</div></div>
+  <div class="flow-step" data-i="6"><div class="ft">Guard against the private leaderboard</div><div>Avoid overfitting to the public leaderboard — trust your local CV score more.</div></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Trusting Your Local Validation</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">from sklearn.model_selection import KFold
+import numpy as np
+
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+oof_preds = np.zeros(len(X))   # out-of-fold predictions
+
+for train_idx, val_idx in kf.split(X):
+    model.fit(X.iloc[train_idx], y.iloc[train_idx])
+    oof_preds[val_idx] = model.predict(X.iloc[val_idx])
+
+local_cv_score = evaluate(y, oof_preds)
+print(f"Local CV score: {local_cv_score:.4f}")
+# This out-of-fold score is usually a better estimate of your true performance
+# than any single public leaderboard submission.</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Common Pitfalls</h2>
+<div class="callout callout-danger">
+  <i class="fa-solid fa-circle-exclamation callout-ic"></i>
+  <div><span class="callout-title">Leaderboard overfitting</span><p>Repeatedly tweaking your model to chase small public leaderboard gains can overfit to that specific (often small) public subset — hurting your final private leaderboard score.</p></div>
+</div>
+<div class="callout callout-danger">
+  <i class="fa-solid fa-circle-exclamation callout-ic"></i>
+  <div><span class="callout-title">Ignoring the evaluation metric</span><p>Optimizing accuracy when the competition scores on log-loss (or vice versa) means you're climbing the wrong hill entirely.</p></div>
+</div>
+<div class="callout callout-danger">
+  <i class="fa-solid fa-circle-exclamation callout-ic"></i>
+  <div><span class="callout-title">Target/feature leakage from the test set</span><p>Any preprocessing statistic (means, encodings) computed on train+test combined can leak information — fit on training folds only.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">What Wins Tabular Competitions</h2>
+<div class="grid-cards">
+  <div class="card"><span class="tag">High impact</span><h4><i class="fa-solid fa-gears"></i> Feature engineering</h4><p>Domain-specific features usually separate top-10 finishers from the middle of the pack.</p></div>
+  <div class="card"><span class="tag">High impact</span><h4><i class="fa-solid fa-layer-group"></i> Ensembling</h4><p>Blending diverse models (see <a href="../ensemble-learning/">Ensemble Learning</a>) squeezes out the final percentage points.</p></div>
+  <div class="card"><span class="tag">Medium impact</span><h4><i class="fa-solid fa-sliders"></i> Careful tuning</h4><p>Important, but usually yields smaller gains than good features once a strong baseline exists.</p></div>
+</div>
+</div>
+
+<div class="pager no-print">
+<a href="../real-world-projects/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Real-World Projects</div>
+        </a>
+<a href="../resources/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">Resources</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

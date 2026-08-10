@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematics for Machine Learning — Linear Algebra &amp; Calculus | ML Handbook</title>
+<meta name="description" content="The linear algebra, calculus, and optimization concepts that power every ML algorithm.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/mathematics-for-ml/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mathematics for Machine Learning — Linear Algebra &amp; Calculus">
+<meta property="og:description" content="The linear algebra, calculus, and optimization concepts that power every ML algorithm.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/mathematics-for-ml/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mathematics for Machine Learning — Linear Algebra &amp; Calculus">
+<meta name="twitter:description" content="The linear algebra, calculus, and optimization concepts that power every ML algorithm.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Foundations"}, {"@type": "ListItem", "position": 3, "name": "Mathematics for ML", "item": "https://engr-rabbi.github.io/ml-handbook/mathematics-for-ml/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/" class="active"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Foundations</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Mathematics for ML</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-square-root-variable"></i> Foundations</span>
+  <h1>Mathematics for Machine Learning</h1>
+  <p class="lede">You don't need a math degree to use ML effectively, but a working intuition for linear algebra, calculus, and optimization makes every algorithm — from linear regression to backpropagation — far less mysterious.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-vector-square"></i> Linear Algebra</span><span><i class="fa-solid fa-chart-line"></i> Calculus</span><span><i class="fa-solid fa-arrows-down-to-line"></i> Optimization</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">Linear Algebra</h2>
+<p>Linear algebra is the language of data in ML: every dataset is a matrix, every feature vector is, well, a vector, and every model's parameters are typically stored as vectors or matrices.</p>
+
+<h3 class="sub">Vectors &amp; Matrices</h3>
+<p>A <strong>vector</strong> is an ordered list of numbers (e.g., one row of your dataset). A <strong>matrix</strong> is a 2D grid of numbers (e.g., your entire feature table, rows × columns).</p>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">import numpy as np
+
+v = np.array([2, 4, 6])          # a vector
+M = np.array([[1, 2], [3, 4]])   # a 2x2 matrix
+
+# Dot product — the core operation behind linear regression and neural network layers
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+dot = np.dot(a, b)  # 1*4 + 2*5 + 3*6 = 32
+
+# Matrix multiplication — how a Dense/Linear layer transforms its input
+X = np.array([[1, 2], [3, 4]])
+W = np.array([[0.5, 0.1], [0.2, 0.9]])
+output = X @ W</code></pre></div>
+
+<h3 class="sub">Why This Matters</h3>
+<div class="grid-cards">
+  <div class="card"><span class="tag">Regression</span><h4><i class="fa-solid fa-chart-line"></i> Linear Regression</h4><p>The prediction formula <code class="inline">y = Xw + b</code> is literally a matrix-vector multiplication plus a bias vector.</p></div>
+  <div class="card"><span class="tag">Deep Learning</span><h4><i class="fa-solid fa-brain"></i> Neural Networks</h4><p>Every Dense layer's forward pass is a matrix multiplication followed by a non-linear activation function.</p></div>
+  <div class="card"><span class="tag">Dimensionality</span><h4><i class="fa-solid fa-compress"></i> PCA</h4><p>Principal Component Analysis relies on eigenvectors and eigenvalues of the covariance matrix.</p></div>
+</div>
+
+<h3 class="sub">Eigenvalues &amp; Eigenvectors (a quick intuition)</h3>
+<p>An eigenvector of a matrix is a direction that the matrix only stretches or shrinks (never rotates); the eigenvalue is the amount of stretching. PCA uses this to find the directions of maximum variance in your data.</p>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">cov_matrix = np.cov(X.T)
+eigenvalues, eigenvectors = np.linalg.eig(cov_matrix)
+# eigenvectors with the largest eigenvalues capture the most variance —
+# these become your principal components</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Calculus &amp; Gradients</h2>
+<p>Almost every ML model is trained by minimizing a loss function, and that minimization relies on <strong>derivatives</strong> — specifically, the gradient, which tells the optimizer which direction reduces the loss fastest.</p>
+
+<h3 class="sub">The Core Idea: Gradient Descent</h3>
+<div class="flow-vert">
+  <div class="flow-step" data-i="1"><div class="ft">Start with random weights</div><div>Initialize the model's parameters randomly.</div></div>
+  <div class="flow-step" data-i="2"><div class="ft">Compute the loss</div><div>Measure how wrong the current predictions are.</div></div>
+  <div class="flow-step" data-i="3"><div class="ft">Compute the gradient</div><div>Find the derivative of the loss with respect to each weight.</div></div>
+  <div class="flow-step" data-i="4"><div class="ft">Update the weights</div><div><code class="inline">w = w - learning_rate * gradient</code> — step in the direction that reduces loss.</div></div>
+  <div class="flow-step" data-i="5"><div class="ft">Repeat</div><div>Continue until the loss stops improving meaningfully.</div></div>
+</div>
+
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python"># A minimal gradient descent example: fitting y = w*x (no bias) to data
+import numpy as np
+
+x = np.array([1, 2, 3, 4])
+y = np.array([2, 4, 6, 8])  # true relationship: y = 2x
+w = 0.0
+learning_rate = 0.01
+
+for epoch in range(200):
+    y_pred = w * x
+    error = y_pred - y
+    gradient = 2 * np.mean(error * x)   # derivative of MSE loss w.r.t. w
+    w = w - learning_rate * gradient
+
+print(f"Learned weight: {w:.3f}")  # converges close to 2.0</code></pre></div>
+
+<div class="callout callout-note">
+  <i class="fa-solid fa-circle-info callout-ic"></i>
+  <div><span class="callout-title">The chain rule powers backpropagation</span><p>Deep networks stack many layers, and computing the gradient for an early layer requires the chain rule — multiplying derivatives layer by layer, backward from the loss. This is exactly what TensorFlow's <code class="inline">GradientTape</code> or PyTorch's autograd computes automatically for you.</p></div>
+</div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Optimization Concepts You'll See Often</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Term</th><th>What it means</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Learning rate</strong></td><td>How big a step the optimizer takes at each update. Too high overshoots; too low is painfully slow.</td></tr>
+    <tr><td><strong>Convex vs. non-convex</strong></td><td>Convex loss surfaces (like linear regression's) have one global minimum. Neural networks are non-convex, with many local minima.</td></tr>
+    <tr><td><strong>Local minimum</strong></td><td>A point where the loss is lower than all nearby points, but not necessarily the lowest overall.</td></tr>
+    <tr><td><strong>Momentum</strong></td><td>Accumulates a moving average of past gradients to smooth out updates and escape shallow local minima.</td></tr>
+    <tr><td><strong>Adam optimizer</strong></td><td>Combines momentum with per-parameter adaptive learning rates — the default choice for most deep learning today.</td></tr>
+  </tbody>
+</table></div>
+<div class="callout callout-tip">
+  <i class="fa-solid fa-lightbulb callout-ic"></i>
+  <div><span class="callout-title">You rarely implement this by hand</span><p>In practice, libraries like scikit-learn and TensorFlow handle gradient computation and optimization for you. The value of understanding the math is in debugging — recognizing symptoms like a learning rate that's too high (loss oscillating wildly) or too low (loss barely moving).</p></div>
+</div>
+</div>
+
+<div class="pager no-print">
+<a href="../python-for-ml/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Python for ML</div>
+        </a>
+<a href="../statistics-for-ml/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">Statistics for ML</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>

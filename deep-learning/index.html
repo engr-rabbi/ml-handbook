@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deep Learning with TensorFlow &amp; Keras — Complete Guide | ML Handbook</title>
+<meta name="description" content="Neural networks, training, callbacks, and transfer learning with TensorFlow/Keras.">
+<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/deep-learning/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deep Learning with TensorFlow &amp; Keras — Complete Guide">
+<meta property="og:description" content="Neural networks, training, callbacks, and transfer learning with TensorFlow/Keras.">
+<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/deep-learning/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning with TensorFlow &amp; Keras — Complete Guide">
+<meta name="twitter:description" content="Neural networks, training, callbacks, and transfer learning with TensorFlow/Keras.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Deep Learning & AI"}, {"@type": "ListItem", "position": 3, "name": "Deep Learning", "item": "https://engr-rabbi.github.io/ml-handbook/deep-learning/"}]}</script>
+</head>
+<body>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+<header class="topbar" role="banner">
+  <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <a href="../index.html" class="brand">
+    <span class="dot-logo"><i class="fa-solid fa-diagram-project"></i></span>
+    <span class="brand-text">ML Handbook</span>
+  </a>
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" id="site-search" placeholder="Search this page…" aria-label="Search this page">
+    <span id="search-count"></span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn no-print" id="expand-all-btn" title="Expand / collapse all sections" aria-label="Expand or collapse all sections"><i class="fa-solid fa-arrows-up-down"></i></button>
+    <button class="icon-btn no-print" id="print-btn" title="Print page" aria-label="Print this page"><i class="fa-solid fa-print"></i></button>
+    <button class="icon-btn no-print" id="theme-toggle" title="Toggle dark / light mode" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div id="sidebar-backdrop" class="no-print"></div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Table of contents navigation">
+<p class="toc-title">Full Site Map</p>
+<nav aria-label="Site navigation">
+<p class="toc-group-label">Start Here</p><ul>
+<li><a href="../roadmap/"><i class="fa-solid fa-route"></i> Learning Roadmap</a></li>
+</ul>
+<p class="toc-group-label">Foundations</p><ul>
+<li><a href="../python-for-ml/"><i class="fa-solid fa-python"></i> Python for ML</a></li>
+<li><a href="../mathematics-for-ml/"><i class="fa-solid fa-square-root-variable"></i> Mathematics for ML</a></li>
+<li><a href="../statistics-for-ml/"><i class="fa-solid fa-chart-simple"></i> Statistics for ML</a></li>
+</ul>
+<p class="toc-group-label">Data Handling</p><ul>
+<li><a href="../data-preprocessing/"><i class="fa-solid fa-broom"></i> Data Preprocessing</a></li>
+<li><a href="../exploratory-data-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Exploratory Data Analysis</a></li>
+<li><a href="../feature-engineering/"><i class="fa-solid fa-gears"></i> Feature Engineering</a></li>
+</ul>
+<p class="toc-group-label">Classical ML</p><ul>
+<li><a href="../supervised-learning/"><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</a></li>
+<li><a href="../unsupervised-learning/"><i class="fa-solid fa-diagram-project"></i> Unsupervised Learning</a></li>
+<li><a href="../ensemble-learning/"><i class="fa-solid fa-layer-group"></i> Ensemble Learning</a></li>
+<li><a href="../time-series/"><i class="fa-solid fa-clock-rotate-left"></i> Time Series</a></li>
+</ul>
+<p class="toc-group-label">Deep Learning &amp; AI</p><ul>
+<li><a href="../deep-learning/" class="active"><i class="fa-solid fa-brain"></i> Deep Learning</a></li>
+<li><a href="../nlp/"><i class="fa-solid fa-comments"></i> NLP</a></li>
+<li><a href="../computer-vision/"><i class="fa-solid fa-image"></i> Computer Vision</a></li>
+<li><a href="../reinforcement-learning/"><i class="fa-solid fa-robot"></i> Reinforcement Learning</a></li>
+</ul>
+<p class="toc-group-label">Model Development</p><ul>
+<li><a href="../model-evaluation/"><i class="fa-solid fa-square-check"></i> Model Evaluation</a></li>
+<li><a href="../hyperparameter-tuning/"><i class="fa-solid fa-sliders"></i> Hyperparameter Tuning</a></li>
+<li><a href="../explainable-ai/"><i class="fa-solid fa-eye"></i> Explainable AI</a></li>
+</ul>
+<p class="toc-group-label">Production &amp; MLOps</p><ul>
+<li><a href="../mlops/"><i class="fa-solid fa-infinity"></i> MLOps</a></li>
+<li><a href="../deployment/"><i class="fa-solid fa-cloud-arrow-up"></i> Deployment</a></li>
+</ul>
+<p class="toc-group-label">Practice &amp; Community</p><ul>
+<li><a href="../real-world-projects/"><i class="fa-solid fa-briefcase"></i> Real-World Projects</a></li>
+<li><a href="../kaggle/"><i class="fa-solid fa-trophy"></i> Kaggle</a></li>
+<li><a href="../resources/"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+</ul>
+</nav>
+  </aside>
+
+  <main id="main-content">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Deep Learning &amp; AI</span> <i class="fa-solid fa-chevron-right"></i> <span style="color:var(--ink);font-weight:600;">Deep Learning</span></nav>
+<section class="page-hero" id="top">
+  <span class="cat-badge"><i class="fa-solid fa-brain"></i> Deep Learning &amp; AI</span>
+  <h1>Deep Learning with TensorFlow &amp; Keras</h1>
+  <p class="lede">Neural networks power modern computer vision, NLP, and generative AI. This page covers the Keras workflow — from building your first model to training, tuning, and saving it.</p>
+  <div class="meta-row"><span><i class="fa-solid fa-layer-group"></i> Model Building</span><span><i class="fa-solid fa-gauge"></i> Training</span></div>
+</section>
+
+<div class="block reveal">
+<h2 class="sec">3 Ways to Build a Keras Model</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">from tensorflow import keras
+
+# 1. Sequential API — simple stack
+model = keras.Sequential([
+    keras.layers.Dense(64, activation='relu', input_shape=(10,)),
+    keras.layers.Dropout(0.2),
+    keras.layers.Dense(1, activation='sigmoid')
+])
+
+# 2. Functional API — for branching / multi-input architectures
+inputs = keras.Input(shape=(28, 28, 1))
+x = keras.layers.Conv2D(32, 3, activation='relu')(inputs)
+x = keras.layers.Flatten()(x)
+outputs = keras.layers.Dense(10, activation='softmax')(x)
+model = keras.Model(inputs=inputs, outputs=outputs)
+
+# 3. Subclassing — full control over the forward pass
+class MyModel(keras.Model):
+    def __init__(self):
+        super().__init__()
+        self.dense1 = keras.layers.Dense(64, activation='relu')
+        self.dense2 = keras.layers.Dense(10, activation='softmax')
+    def call(self, inputs):
+        return self.dense2(self.dense1(inputs))</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Training a Model</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+callbacks = [
+    keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True),
+    keras.callbacks.ModelCheckpoint('best_model.h5', save_best_only=True),
+    keras.callbacks.ReduceLROnPlateau(factor=0.5, patience=3),
+]
+
+history = model.fit(
+    X_train, y_train,
+    validation_data=(X_val, y_val),
+    epochs=50,
+    callbacks=callbacks
+)</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Data Pipelines with tf.data</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">import tensorflow as tf
+
+dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train))
+dataset = dataset.shuffle(1000).batch(32).prefetch(tf.data.AUTOTUNE)</code></pre></div>
+<p>For image-specific pipelines (augmentation, CNNs, transfer learning), see the dedicated <a href="../computer-vision/">Computer Vision</a> page. For text pipelines, see <a href="../nlp/">NLP</a>.</p>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Hyperparameter Tuning with Keras Tuner</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">import keras_tuner as kt
+
+def build_model(hp):
+    model = keras.Sequential()
+    hp_units = hp.Int('units', min_value=32, max_value=512, step=32)
+    model.add(keras.layers.Dense(units=hp_units, activation='relu'))
+    model.add(keras.layers.Dense(10, activation='softmax'))
+    hp_lr = hp.Choice('learning_rate', values=[1e-2, 1e-3, 1e-4])
+    model.compile(optimizer=keras.optimizers.Adam(hp_lr),
+                  loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    return model
+
+tuner = kt.Hyperband(build_model, objective='val_accuracy', max_epochs=10)
+tuner.search(X_train, y_train, epochs=10, validation_data=(X_val, y_val))</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Model Save &amp; Load</h2>
+<div class="code-card"><div class="code-head"><span class="code-lang"><span class="lang-dot"></span>python</span><button class="copy-btn"><i class="fa-solid fa-copy"></i> Copy</button></div><pre><code class="language-python">model.save('my_model.h5')
+loaded_model = keras.models.load_model('my_model.h5')
+
+# TensorFlow Serving format
+model.save('my_model', save_format='tf')</code></pre></div>
+</div>
+
+<div class="block reveal">
+<h2 class="sec">Common Problems &amp; Solutions</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Overfitting</strong></td><td>Dropout, regularization, EarlyStopping, data augmentation</td></tr>
+    <tr><td><strong>Underfitting</strong></td><td>Increase model capacity, lower the learning rate, train longer</td></tr>
+    <tr><td><strong>Vanishing/exploding gradients</strong></td><td>BatchNormalization, gradient clipping</td></tr>
+    <tr><td><strong>Out of GPU memory</strong></td><td>Reduce batch size, use <code class="inline">tf.data</code>'s prefetch</td></tr>
+  </tbody>
+</table></div>
+</div>
+
+<div class="pager no-print">
+<a href="../time-series/" class="pg-prev">
+          <div class="pg-label"><i class="fa-solid fa-arrow-left"></i> Previous</div>
+          <div class="pg-title">Time Series</div>
+        </a>
+<a href="../nlp/" class="pg-next">
+          <div class="pg-label">Next <i class="fa-solid fa-arrow-right"></i></div>
+          <div class="pg-title">NLP</div>
+        </a>
+</div>
+  </main>
+</div><!-- /layout -->
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="foot-col" style="flex:1.4;min-width:220px;">
+      <div class="fbrand"><i class="fa-solid fa-diagram-project"></i> ML Handbook</div>
+      <p style="max-width:320px;">A structured, single-source reference covering the full machine learning lifecycle — from Python basics to production deployment.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Start Here</h5>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../roadmap/">Learning Roadmap</a></li>
+        <li><a href="../resources/">Resources &amp; FAQ</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Core Topics</h5>
+      <ul>
+        <li><a href="../data-preprocessing/">Data Preprocessing</a></li>
+        <li><a href="../supervised-learning/">Supervised Learning</a></li>
+        <li><a href="../deep-learning/">Deep Learning</a></li>
+        <li><a href="../mlops/">MLOps</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Practice</h5>
+      <ul>
+        <li><a href="../real-world-projects/">Real-World Projects</a></li>
+        <li><a href="../kaggle/">Kaggle Strategy</a></li>
+        <li><a href="../deployment/">Deployment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="footer-inner" style="justify-content:space-between;">
+      <span>&copy; 2026 ML Handbook. All code examples are provided for educational purposes.</span>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script src="../assets/app.js"></script>
+</body>
+</html>
