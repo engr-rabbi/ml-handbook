@@ -4,18 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Data Preprocessing — Missing Values, Outliers &amp; Encoding | ML Handbook</title>
-<meta name="description" content="Cleaning, imputing, encoding, and preparing raw data for modeling.">
-<link rel="canonical" href="https://engr-rabbi.github.io/ml-handbook/data-preprocessing/">
-<meta property="og:type" content="website">
+<meta name="description" content="Cleaning, imputing missing values, treating outliers, and encoding categorical features correctly before modeling.">
+<meta name="keywords" content="data preprocessing, missing value imputation, outlier detection, categorical encoding">
+<meta name="author" content="ML Handbook">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://github.com/engr-rabbi/ml-handbook/data-preprocessing/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ML Handbook">
 <meta property="og:title" content="Data Preprocessing — Missing Values, Outliers &amp; Encoding">
-<meta property="og:description" content="Cleaning, imputing, encoding, and preparing raw data for modeling.">
-<meta property="og:url" content="https://engr-rabbi.github.io/ml-handbook/data-preprocessing/">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="Cleaning, imputing missing values, treating outliers, and encoding categorical features correctly before modeling.">
+<meta property="og:url" content="https://github.com/engr-rabbi/ml-handbook/data-preprocessing/">
+<meta property="og:image" content="https://github.com/engr-rabbi/ml-handbook/assets/MLHandbook">
+<meta property="og:locale" content="en_US">
+<meta property="article:modified_time" content="2026-08-10">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@example">
 <meta name="twitter:title" content="Data Preprocessing — Missing Values, Outliers &amp; Encoding">
-<meta name="twitter:description" content="Cleaning, imputing, encoding, and preparing raw data for modeling.">
+<meta name="twitter:description" content="Cleaning, imputing missing values, treating outliers, and encoding categorical features correctly before modeling.">
+<meta name="twitter:image" content="https://github.com/engr-rabbi/ml-handbook/assets/MLHandbook">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="../assets/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://engr-rabbi.github.io/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Data Handling"}, {"@type": "ListItem", "position": 3, "name": "Data Preprocessing", "item": "https://engr-rabbi.github.io/ml-handbook/data-preprocessing/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://github.com/engr-rabbi/ml-handbook/"}, {"@type": "ListItem", "position": 2, "name": "Data Handling"}, {"@type": "ListItem", "position": 3, "name": "Data Preprocessing", "item": "https://github.com/engr-rabbi/ml-handbook/data-preprocessing/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Data Preprocessing — Missing Values, Outliers & Encoding", "description": "Cleaning, imputing missing values, treating outliers, and encoding categorical features correctly before modeling.", "url": "https://github.com/engr-rabbi/ml-handbook/data-preprocessing/", "inLanguage": "en", "datePublished": "2026-01-15", "dateModified": "2026-08-10", "author": {"@type": "Organization", "name": "ML Handbook"}, "publisher": {"@type": "Organization", "name": "ML Handbook", "logo": {"@type": "ImageObject", "url": "https://github.com/engr-rabbi/ml-handbook/assets/logo.png"}}, "image": "https://github.com/engr-rabbi/ml-handbook/assets/MLHandbook", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://github.com/engr-rabbi/ml-handbook/data-preprocessing/"}, "keywords": "data preprocessing, missing value imputation, outlier detection, categorical encoding"}</script>
 </head>
 <body>
 <noscript><style>.reveal{opacity:1 !important;transform:none !important;} .sidebar{position:static !important;height:auto !important;transform:none !important;}</style></noscript>
