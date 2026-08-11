@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://github.com/engr-rabbi/ml-handbook/sitemap.xml
+Sitemap: https://engr-rabbi.github.io/ml-handbook/sitemap.xml
